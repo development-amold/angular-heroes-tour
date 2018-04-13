@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Hero} from '../hero';
 import { HeroService } from '../hero.service';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -19,7 +20,6 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero): void{
-    console.log(hero);
     this.selectedHero = hero;
   }
 
@@ -28,5 +28,8 @@ export class HeroesComponent implements OnInit {
     .subscribe(heroes => this.heroes = heroes);
   }
 
+  deleteHero(id: number):void{
+    this.heroService.deleteHero(id).subscribe(heroes => this.heroes);
+  }
 
 }
